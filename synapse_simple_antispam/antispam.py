@@ -7,7 +7,7 @@ class AntiSpamInvites(object):
 
     def user_may_invite(self, inviter_user_id, invitee_user_id, room_id):
         for bad_hs in self._block_invites_from:
-            if inviter_user_id.endswith(":" + bad_hs):
+            if inviter_user_id.endswith(":" + bad_hs) or room_id.endswith(":" + bad_hs) or inviter_user_id == bad_hs or room_id == bad_hs:
                 return False # not allowed
         return True # allowed
 
